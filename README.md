@@ -387,7 +387,60 @@
 #    def make_sound(self):
 #print("Tweet")
 
+#                                  30.07.24 Воскересенье Дз
+#            Задача№1
 
+#class Bank:
+ #   def __init__(self, client_name, card_number, initial_balance):
+ #         self.__client_name = client_name
+ #         self.__card_number = card_number
+#          self.__balance = initial_balance
+
+ #   def print_balance(self):
+#print(f"Client: {self.__client_name}, Card Number: {self.__card_number}, Balance: {self.__balance}")
+
+#    def change_balance(self, money):
+#    if money < 0:
+#print("Withdrawal operation")
+#    self.__balance += money
+#    elif money > 0:
+#print("Deposit operation")
+#    self.__balance += money
+#    else:
+#print("No changes made to the balance")
+# Пример использования класса Bank
+#client1 = Bank("Alice", "1234 5678 9012 3456", 1000)
+#client1.print_balance()
+
+#client1.change_balance(500)
+#client1.print_balance()
+
+#client1.change_balance(-200)
+#client1.print_balance()
+#                        Задание: №2
+#class Account:
+#    def __init__(self, balance):
+#          self.__balance = balance
+
+#@property
+#    def balance(self):
+#    return self.__balance
+
+#@balance.setter
+#    def balance(self, new_balance):
+#    self.__balance = new_balance
+
+#@balance.deleter
+#    def balance(self):
+#    self.__balance = 0
+
+# Проверка кода
+#acc = Account(100)
+#print(acc.balance) # Вывод: 100
+#acc.balance = 200
+#print(acc.balance) # Вывод: 200
+#del acc.balance
+#print(acc.balance) # Вывод: 0
 
 
 
