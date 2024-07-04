@@ -442,7 +442,62 @@
 #del acc.balance
 #print(acc.balance) # Вывод: 0
 
+#                              03.07.24 среда Домашняя работа
+#    Задача №1
+#import math
 
+#_default_radius = 5
+
+#   def circle_perimeter(radius=_default_radius):
+#   return 2 * math.pi * radius
+
+#   def circle_area(radius=_default_radius):
+#   return math.pi * radius**2
+#from circle import circle_perimeter, circle_area
+#print(circle_perimeter(3)) # Выведет длину окружности с радиусом 3
+#print(circle_area(3)) # Выведет площадь окружности с радиусом 3
+#    Задача №2
+#def triangle_perimeter(a=7, b=2, c=8):
+#perimeter = a + b + c
+#return perimeter
+
+#def triangle_area(a=7, b=2, c=8):
+#s = (a + b + c) / 2
+#area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
+#return area
+# triangle.py
+#a = 7
+#b = 2
+#c = 8
+
+#def triangle_perimeter(side_a=None, side_b=None, side_c=None):
+#a_side = a if side_a is None else side_a
+#b_side = b if side_b is None else side_b
+#c_side = c if side_c is None else side_c
+
+#perimeter = a_side + b_side + c_side
+#return perimeter
+
+#def triangle_area(side_a=None, side_b=None, side_c=None):
+#a_side = a if side_a is None else side_a
+#b_side = b if side_b is None else side_b
+#c_side = c if side_c is None else side_c
+#s = (a_side + b_side + c_side) / 2
+#area = (s * (s - a_side) * (s - b_side) * (s - c_side)) ** 0.5
+#return area
+#    Задача №3
+#def square_perimeter(a=15):
+#return 4 * a
+
+#def square_area(a=15):
+#return a * a
+#import square
+
+#perimeter = square.square_perimeter() # Периметр квадрата со стороной 15
+#area = square.square_area() # Площадь квадрата со стороной 15
+
+#print("Периметр квадрата:", perimeter)
+#print("Площадь квадрата:", area)
 
 
 
