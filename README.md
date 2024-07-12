@@ -605,7 +605,34 @@
 #       self.delete_particles()
 #       for particle in self.particles:
 #           particle[0].x -= 1
-
+#                                          Домашняя работа      10.07.24
+#               Задача1
+#def flatten(lst, depth):
+#  result = []
+#for item in lst:
+# if isinstance(item, list) and depth > 0:
+#  result.extend(flatten(item, depth - 1))
+#else:
+# result.append(item)
+# return result
+# Пример использования функции
+#nested_list = [1, [2, [3, 4], 5], 6, [7, 8]]
+#depth = 2
+#flattened_list = flatten(nested_list, depth)
+#print(flattened_list)
+#               Задача2
+#def unpack_list(nested_list):
+# flat_list = []
+#for item in nested_list:
+# if isinstance(item, list):
+#  flat_list.extend(unpack_list(item))
+#else:
+# flat_list.append(item)
+#return flat_list
+# Пример использования функции
+#nested_list = [1, [2, 3], [4, [5, 6]], 7]
+#result = unpack_list(nested_list)
+#print(result)
 
 
 
