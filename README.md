@@ -635,6 +635,44 @@
 #print(result)
 
 
+#                                                 Домашняя работа     15.07.24
+#                                        Задача№1
+#def flatten(lst, depth):
+# result = []
+#for item in lst:
+# if isinstance(item, list) and depth > 0:
+#  result.extend(flatten(item, depth - 1))
+#else:
+# result.append(item)
+#return result
+#nested_list = [1, [2, [3, 4], 5], 6, [7, 8]]
+#depth = 2
+#flattened_list = flatten(nested_list, depth)
+#print(flattened_list)
+#                                          Задача№2
+#def flatten_list(nested_list):
+#for item in nested_list:
+#  flat_list.extend(flatten_list(item))
+#else:
+# flat_list.append(item)
+#return flat_list
+#nested_list = [1, [2, 3], [4, [5, 6]], 7]
+#flattened_list = flatten_list(nested_list)
+#print(flattened_list)
+#                                          Задача№3
+     # С ДАННОЙ ЗАДАЧЕЙ ПОДСКАЗАЛИ
+#def unpack_lists(input_list):
+# output_list = []
+#for item in input_list:
+# if isinstance(item, list):
+#  output_list.extend(unpack_lists(item))
+#else:
+# output_list.append(item)
+#return output_list
+#nested_list = [[1, 2], [3, [4, 5]], 6, [7, 8, [9, 10]]]
+#result = unpack_lists(nested_list)
+#print(result)
+
 
 
 
