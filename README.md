@@ -673,6 +673,45 @@
 #result = unpack_lists(nested_list)
 #print(result)
 
+#                                             Домашняя работа 17.07.24
+#                  Задача№1
+#def log_errors(func):
+# """ Декоратор логирования ошибок """
+# def decorator(a, b, oper):
+ # try:
+#   return func(a, b, oper)
+#  except:
+#   msg = 'Функция {} выдала ошибку с параметрами: a={}, b={}, oper={}'.format(func.__name__, a, b, oper)
+#   print(msg)
+#  return None
+# return decorator
+#@log_errors
+#def calculate(a: int, b: int, oper: str):
+ #""" Функция выполнения арифметической операции между двумя числами """
+# expression = '{} {} {}'.format(a, oper, b)
+# res = eval(expression)
+# return res
+#r = calculate(1, 2, '+')
+#print(r)
+#print(r)
+#return func(a, b, oper)
+#except Exception as e:
+#print(f"An error occurred: {e}")
+#return decorator
+#@log_errors
+#def calculate(a, b, oper):
+#if oper == '+':
+#return a + b
+#elif oper == '-':
+#return a - b
+#elif oper == '*':
+#return a * b
+#elif oper == '/':
+#return a / b
+# Пример использования
+#result = calculate(10, 5, '+')
+#print(result)
+
 
 
 
