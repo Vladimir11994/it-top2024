@@ -712,7 +712,24 @@
 #result = calculate(10, 5, '+')
 #print(result)
 
-
+#                                      Домашняя работа 21.07.24
+#                   Задача№1
+#def role_required(role: str):
+#def decorator(func):
+#def wrapper(user_role):
+#if user_role == 'admin':
+#return func()
+#else:
+#return 'Permission denied'
+#return wrapper
+#return decorator
+#@role_required('admin')
+#def secret_resource():
+#return 'Permission accepted'
+# Пример использования
+#user_role = input().strip()
+#result = secret_resource(user_role)
+#print(result)
 
 
 
