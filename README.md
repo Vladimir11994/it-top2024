@@ -839,57 +839,478 @@
 #                  window.hide()
 #             Пример
 #                                      24.05.24   Домашняя  работа
-#                 Задача№1
-#def role_required(role: str):
-#def decorator(func):
-#def wrapper(user_role):
-#if user_role == 'admin':
-#return func()
-#else:
-#return 'Permission denied'
-#return wrapper
-#return decorator
 
-#@role_required('admin')
-#def secret_resource():
-#return 'Permission accepted'
-# Пример использования
-#print(secret_resource('admin')) # Output: Permission accepted
-#print(secret_resource('manager')) # Output: Permission denied
-#                 Задача№2
-#RU_TO_EN = {
-#"привет": "hello",
-#"мир": "world"
-#}
-#RU_TO_LT = {
-#"привет": "sveiki",
-#"мир": "pasaulis"
-#}
-#def translate_to(lang: str):
-#def decorator(func):
-#def wrapper(word):
-#if lang == "EN":
-#translation = RU_TO_EN.get(word, word)
-#elif lang == "LT":
-#translation = RU_TO_LT.get(word, word)
-#else:
-#translation = word
-#return func(translation)
-#return wrapper
-#return decorator
+ #       переписать 10 паттернов
+# coding: utf-8
+#              Паттерны №1
+"""
+Абстрактная фабрика (Abstract factory, Kit) - паттерн, порождающий объекты.
 
-#@translate_to("EN")
-#def say(word):
-#print(word)
+#Предоставляет интерфейс для создания семейств взаимосвязанных или взаимозависимых объектов,
+#не специфицируя их конкретных классов.
 
-#@translate_to("LT")
-#def say_lt(word):
-#print(word)
-#say("привет")
-#say_lt("привет")
+#Классы абстрактной фабрики часто реализуются фабричными методами,
+#но могут быть реализованы и с помощью паттерна прототип.
+#"""
+#class AbstractFactory(object):
+#    def create_drink(self):
+#        raise NotImplementedError()
 
+#    def create_food(self):
+#        raise NotImplementedError()
+#class Drink(object):
+#    def __init__(self, name):
+#        self._name = name
 
+#    def __str__(self):
+#        return self._name
+#class Food(object):
+#    def __init__(self, name):
+#        self._name = name
 
+#    def __str__(self):
+#        return self._name
+
+#class ConcreteFactory1(AbstractFactory):
+#    def create_drink(self):
+#        return Drink('Coca-cola')
+
+#    def create_food(self):
+#        return Food('Hamburger')
+#class ConcreteFactory2(AbstractFactory):
+#    def create_drink(self):
+#        return Drink('Pepsi')
+
+#    def create_food(self):
+#        return Food('Cheeseburger')
+#def get_factory(ident):
+#    if ident == 0:
+#        return ConcreteFactory1()
+#    elif ident == 1:
+#        return ConcreteFactory2()
+
+#factory = get_factory(1)
+#print factory.create_drink()  # Pepsi
+#print factory.create_food()  # Cheeseburger
+#              Паттерны №2
+# coding: utf-8
+
+"""
+Строитель (Builder) - паттерн, порождающий объекты.
+
+Отделяет конструирование сложного объекта от его представления,
+так что в результате одного и того же процесса конструирования могут получаться разные представления.
+
+От абстрактной фабрики отличается тем, что делает акцент на пошаговом конструировании объекта.
+Строитель возвращает объект на последнем шаге, тогда как абстрактная фабрика возвращает объект немедленно.
+
+Строитель часто используется для создания паттерна компоновщик.
+"""
+#class Builder(object):
+#    def build_body(self):
+#        raise NotImplementedError()
+#    def build_lamp(self):
+#        raise NotImplementedError()
+
+#    def build_battery(self):
+#        raise NotImplementedError()
+
+#    def create_flashlight(self):
+#        raise NotImplementedError()
+#class Flashlight(object):
+#    """Карманный фонарик"""
+#    def __init__(self, body, lamp, battery):
+#        self._shine = False  # излучать свет
+#        self._body = body
+#        self._lamp = lamp
+#        self._battery = battery
+#    def on(self):
+#        self._shine = True
+#    def off(self):
+#        self._shine = False
+#    def __str__(self):
+#        shine = 'on' if self._shine else 'off'
+#        return 'Flashlight [%s]' % shine
+#class Lamp(object):
+#    """Лампочка"""
+#class Body(object):
+#    """Корпус"""
+#class Battery(object):
+#    """Батарея"""
+#class FlashlightBuilder(Builder):
+#    def build_body(self):
+#        return Body()
+#    def build_battery(self):
+#        return Battery()
+#    def build_lamp(self):
+#        return Lamp()
+#    def create_flashlight(self):
+#        body = self.build_body()
+#        lamp = self.build_lamp()
+#        battery = self.build_battery()
+#        return Flashlight(body, lamp, battery)
+#builder = FlashlightBuilder()
+#flashlight = builder.create_flashlight()
+#flashlight.on()
+#print flashlight  # Flashlight [on]
+#              Паттерны №3
+# coding: utf-8
+
+"""
+Фабричный метод (Factory Method) - паттерн, порождающий классы.
+
+Определяет интерфейс для создания объекта, но оставляет подклассам решение о том, какой класс инстанцировать.
+Позволяет делегировать инстанцирование подклассам.
+
+Абстрактная фабрика часто реализуется с помощью фабричных методов.
+Фабричные методы часто вызываются внутри шаблонных методов.
+"""
+#class Document(object):
+#    def show(self):
+#        raise NotImplementedError()
+#class ODFDocument(Document):
+#    def show(self):
+#        print 'Open document format'
+#class MSOfficeDocument(Document):
+#    def show(self):
+#        print 'MS Office document format'
+#class Application(object):
+#    def create_document(self, type_):
+        # параметризованный фабричный метод `create_document`
+#        raise NotImplementedError()
+#class MyApplication(Application):
+#    def create_document(self, type_):
+#        if type_ == 'odf':
+#            return ODFDocument()
+#        elif type_ == 'doc':
+ #           return MSOfficeDocument()
+#        else:
+#            return Document()
+#app = MyApplication()
+#app.create_document('odf').show()  # Open document format
+#app.create_document('doc').show()  # MS Office document format
+#try:
+#    app.create_document('pdf').show()
+#except:
+#    print("NotImplementedError")
+#              Паттерны №4
+# coding: utf-8
+
+"""
+Прототип - паттерн, порождающий объекты.
+Задает виды создаваемых объектов с помощью экземпляра-прототипа
+#и создает новые объекты путем копирования этого прототипа.
+#"""
+#import copy
+#class Prototype(object):
+#    def __init__(self):
+#        self._objects = {}
+
+#    def register(self, name, obj):
+#        self._objects[name] = obj
+
+#    def unregister(self, name):
+#        del self._objects[name]
+#    def clone(self, name, attrs):
+#        obj = copy.deepcopy(self._objects[name])
+#        obj.__dict__.update(attrs)
+#        return obj
+#class Bird(object):
+#    """Птица"""
+#prototype = Prototype()
+#prototype.register('bird', Bird())
+#owl = prototype.clone('bird', {'name': 'Owl'})
+#print type(owl), owl.name  # <class '__main__.Bird'> Owl
+#duck = prototype.clone('bird', {'name': 'Duck'})
+#print type(duck), duck.name  # <class '__main__.Bird'> Duck
+#              Паттерны №5
+# coding: utf-8
+
+"""
+Одиночка (Singleton) - паттерн, порождающий объекты.
+
+Гарантирует, что у класса есть только один экземпляр, и предоставляет к нему глобальную точку доступа.
+
+С помощью паттерна одиночка могут быть реализованы многие паттерны (абстрактная фабрика, строитель, прототип).
+"""
+#class SingletonMeta(type):
+#    def __init__(cls, *args, **kwargs):
+#        cls._instance = None
+#        # глобальная точка доступа `Singleton.get_instance()`
+#        cls.get_instance = classmethod(lambda c: c._instance)
+#        super(SingletonMeta, cls).__init__(*args, **kwargs)
+#    def __call__(cls, *args, **kwargs):
+#        if not cls._instance:
+#            cls._instance = super(SingletonMeta, cls).__call__(*args, **kwargs)
+#        return cls._instance
+#class Singleton(object):
+#    __metaclass__ = SingletonMeta
+#    def __init__(self, name):
+#        self._name = name
+#    def get_name(self):
+#        return self._name
+#obj1 = Singleton('MyInstance 1')
+#print obj1.get_name()  # MyInstance 1
+#obj2 = Singleton('MyInstance 2')
+#print obj2.get_name()  # MyInstance 1
+#print obj1 is obj2 is Singleton.get_instance()  # True
+#              Паттерны №6
+# coding: utf-8
+
+"""
+Цепочка обязанностей (Chain of Responsibility) - паттерн поведения объектов.
+
+Позволяет избежать привязки отправителя запроса к его получателю,
+давая шанс обработать запрос нескольким объектам. Связывает объекты-получатели в цепочку
+и передает запрос вдоль этой цепочки, пока его не обработают.
+"""
+#class HttpHandler(object):
+#    """Абстрактный класс обработчика"""
+#    def handle(self, code):
+#        raise NotImplementedError()
+#class Http404Handler(HttpHandler):
+#    """Обработчик для кода 404"""
+#    def handle(self, code):
+#        if code == 404:
+#            return 'Страница не найдена'
+#class Http500Handler(HttpHandler):
+#    """Обработчик для кода 500"""
+#    def handle(self, code):
+#        if code == 500:
+#            return 'Ошибка сервера'
+#class Client(object):
+ #   def __init__(self):
+#        self._handlers = []
+#    def add_handler(self, h):
+#        self._handlers.append(h)
+#    def response(self, code):
+#        for h in self._handlers:
+#            msg = h.handle(code)
+#            if msg:
+#                print 'Ответ: %s' % msg
+#                break
+ #       else:
+#            print 'Код не обработан'
+#client = Client()
+#client.add_handler(Http404Handler())
+#client.add_handler(Http500Handler())
+#client.response(400)  # Код не обработан
+#client.response(404)  # Ответ: Страница не найдена
+#client.response(500)  # Ответ: Ошибка сервера
+#              Паттерны №7
+# coding: utf-8
+
+"""
+Команда (Command, Action, Transaction) - паттерн поведения объектов.
+
+Инкапсулирует запрос как объект, позволяя тем самым задавать параметры клиентов
+для обработки соответствующих запросов, ставить запросы в очередь или протоколировать их,
+а также поддерживать отмену операций.
+"""
+#class Light(object):
+#    def turn_on(self):
+#        print 'Включить свет'
+#    def turn_off(self):
+#        print 'Выключить свет'
+#class CommandBase(object):
+#    def execute(self):
+#        raise NotImplementedError()
+#class LightCommandBase(CommandBase):
+ #   def __init__(self, light):
+#        self.light = light
+#class TurnOnLightCommand(LightCommandBase):
+#    def execute(self):
+#        self.light.turn_on()
+#class TurnOffLightCommand(LightCommandBase):
+#    def execute(self):
+#        self.light.turn_off()
+#class Switch(object):
+#    def __init__(self, on_cmd, off_cmd):
+#        self.on_cmd = on_cmd
+#        self.off_cmd = off_cmd
+#    def on(self):
+#        self.on_cmd.execute()
+#    def off(self):
+#        self.off_cmd.execute()
+#light = Light()
+#switch = Switch(on_cmd=TurnOnLightCommand(light),
+#                off_cmd=TurnOffLightCommand(light))
+#switch.on()  # Включить свет
+#switch.off()  # Выключить свет
+#              Паттерны №8
+# coding: utf-8
+
+"""
+Итератор (Iterator) - паттерн поведения объектов.
+
+Предоставляет способ последовательного доступа ко всем элементам составного объекта,
+не раскрывая его внутреннего представления.
+"""
+#class IteratorBase(object):
+#    """Базовый класс итератора"""
+#    def first(self):
+#        """Возвращает первый элемент коллекции.
+#        Если элемента не существует возбуждается исключение IndexError."""
+#        raise NotImplementedError()
+#    def last(self):
+ #       """Возвращает последний элемент коллекции.
+#        Если элемента не существует возбуждается исключение IndexError."""
+#        raise NotImplementedError()
+#    def next(self):
+#        """Возвращает следующий элемент коллекции"""
+#        raise NotImplementedError()
+#    def prev(self):
+#        raise NotImplementedError()
+#    def current_item(self):
+#        """Возвращает текущий элемент коллекции"""
+#        raise NotImplementedError()
+#    def is_done(self, index):
+#        """Возвращает истину если элемент с указанным индексом существует, иначе ложь"""
+#        raise NotImplementedError()
+#    def get_item(self, index):
+#        """Возвращает элемент коллекции с указанным индексом, иначе возбуждает исключение IndexError"""
+#        raise NotImplementedError()
+#class Iterator(IteratorBase):
+#    def __init__(self, list_=None):
+#        self._list = list_ or []
+#        self._current = 0
+ #   def first(self):
+#        return self._list[0]
+#    def last(self):
+#        return self._list[-1]
+#    def current_item(self):
+#        return self._list[self._current]
+#    def is_done(self, index):
+#        last_index = len(self._list) - 1
+#        return 0 <= index <= last_index#
+#    def next(self):
+#        self._current += 1
+#        if not self.is_done(self._current):
+#            self._current = 0
+#        return self.current_item()
+#    def prev(self):
+#        self._current -= 1
+#        if not self.is_done(self._current):
+#            self._current = len(self._list) - 1
+#        return self.current_item()
+#    def get_item(self, index):
+ #       if not self.is_done(index):
+#            raise IndexError('Нет элемента с индексом: %d' % index)
+#        return self._list[index]
+#it = Iterator(['one', 'two', 'three', 'four', 'five'])
+#print [it.prev() for i in range(5)]  # ['five', 'four', 'three', 'two', 'one']
+#print [it.next() for i in range(5)]  # ['two', 'three', 'four', 'five', 'one']
+#              Паттерны №9
+# coding: utf-8
+
+"""
+Посредник (Mediator) - паттерн поведения объектов.
+
+Определяет объект, инкапсулирующий способ взаимодействия множества объектов.
+Посредник обеспечивает слабую связанность системы, избавляя объекты от необъодимости явно ссылаться друг на друга
+и позволяя тем самым независимо изменять взаимодействия между ними.
+"""
+#class WindowBase(object):
+#    def show(self):
+#        raise NotImplementedError()
+#    def hide(self):
+#        raise NotImplementedError()
+#class MainWindow(WindowBase):
+#    def show(self):
+#        print 'Show MainWindow'
+#    def hide(self):
+#        print 'Hide MainWindow'
+#class SettingWindow(WindowBase):
+#        print 'Show SettingWindow'
+#    def hide(self):
+#        print 'Hide SettingWindow'
+#class HelpWindow(WindowBase):
+#    def show(self):
+#        print 'Show HelpWindow'
+#    def hide(self):
+#        print 'Hide HelpWindow'
+#class WindowMediator(object):
+#    def __init__(self):
+#        self.windows = dict.fromkeys(['main', 'setting', 'help'])
+
+#    def show(self, win):
+#        for window in self.windows.itervalues():
+#            if not window is win:
+#                window.hide()
+#        win.show()
+#    def set_main(self, win):
+#        self.windows['main'] = win
+#    def set_setting(self, win):
+#        self.windows['setting'] = win
+#    def set_help(self, win):
+#        self.windows['help'] = win
+#main_win = MainWindow()
+#setting_win = SettingWindow()
+#help_win = HelpWindow()
+#med = WindowMediator()
+#med.set_main(main_win)
+#med.set_setting(setting_win)
+#med.set_help(help_win)
+#main_win.show()  # Show MainWindow
+#med.show(setting_win)
+# Hide MainWindow
+# Hide HelpWindow
+# Show SettingWindow
+#med.show(help_win)
+# Hide MainWindow
+# Hide SettingWindow
+# Show HelpWindow
+#              Паттерны №10
+# coding: utf-8
+
+"""
+Состояние (State) - паттерн поведения объектов.
+
+Позволяет объекту варьировать свое поведение в зависимости от внутреннего состояния.
+Извне создается впечатление, что изменился класс объекта.
+"""
+#class LampStateBase(object):
+#    """Состояние лампы"""
+#    def get_color(self):
+#        raise NotImplementedError()
+#class GreenLampState(LampStateBase):
+#    def get_color(self):
+#        return 'Green'
+#class RedLampState(LampStateBase):
+#    def get_color(self):
+#        return 'Red'
+#class BlueLampState(LampStateBase):
+#    def get_color(self):
+#        return 'Blue'
+#class Lamp(object):
+#    def __init__(self):
+#        self._current_state = None
+#        self._states = self.get_states()
+#    def get_states(self):
+#        return [GreenLampState(), RedLampState(), BlueLampState()]
+#    def next_state(self):
+#        if self._current_state is None:
+#            self._current_state = self._states[0]
+#        else:
+#            index = self._states.index(self._current_state)
+#            if index < len(self._states) - 1:
+#                index += 1
+#            else:
+#                index = 0
+#            self._current_state = self._states[index]
+#        return self._current_state
+#    def light(self):
+#        state = self.next_state()
+#        print state.get_color()
+#lamp = Lamp()
+#[lamp.light() for i in range(3)]
+# Green
+# Red
+# Blue
+#[lamp.light() for i in range(3)]
+# Green
+# Red
+# Blue
 
 
 
