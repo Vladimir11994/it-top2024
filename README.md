@@ -731,7 +731,162 @@
 #result = secret_resource(user_role)
 #print(result)
 
+#                               24.07.24 Среда занятие класс
+#      Тема
+#  Фабричный метод
+#     Значения метода фабричный
+#Фабричный метод это пораждаюши  фактор
+#проектирования который определеяет обший интер фейс
+#для создания обьектов супер-классов позволяет подклассам
+#изменять тип создоваемых обьектов
+#   Пример
+#class Documet(object):
+#    def show(self):
+#        raise  NotImplementedError()
 
+#class ODFDocument(Documet):
+#     def show(self):
+#         print('Открытие формата документа')
+
+#class MSOficeDocument(Documet):
+#     def show(self):
+#         print('MSOffice формат')
+
+#class Application(object):
+#     def create_document(self,type_):
+#         raise NotImplementedError
+
+#class MyApplication(Application):
+#     def create_document(self,type_):
+#         if type_=='odf':
+#             return ODFDocument()
+#         elif type_=='doc':
+#             return  MSOficeDocument()
+#         else:
+#             return  Documet()
+
+#app = MyApplication()
+#app.create_document('odf').show()
+#app.create_document('doc').show()
+
+#try:
+#    app.create_document('pdf').show()
+#except:
+#      print('NotImplementedError')
+#           ПРОТОТИП дальше тема
+#прототип создает виды создаваемых обьектов с помощью
+#экземпляра прототипа.
+#                        Пример
+#import copy
+#from typing import Dict, Any
+#class Prototype:
+#    def _init_(self) -> None:
+#        self._objects: Dict[str, Any] = {}
+
+ #   def register(self, name: str, obj: Any) -> None:
+ #       self._objects[name] = obj
+
+#    def unregister(self, name: str) -> None:
+#        del self._objects[name]
+
+#    def clone(self, name: str, attrs: Dict[str, Any]) -> Any:
+#        obj = copy.deepcopy(self._objects[name])
+#        obj._dict_.update(attrs)
+#        return obj
+#class Bird:
+#    """Птица"""
+
+#    def _init_(self, name: str = "") -> None:
+#        self.name = name
+
+    # Создаем экземпляр прототипа
+#prototype = Prototype()
+#prototype.register('bird', Bird())
+# Клонируем и изменяем атрибуты для совы
+#owl = prototype.clone('bird', {'name': 'Owl'})
+#print(type(owl), owl.name)  # <class '_main_.Bird'> Owl
+# Клонируем и изменяем атрибуты для утки
+#duck = prototype.clone('bird', {'name': 'Duck'})
+#print(type(duck), duck.name)  # <class '_main_.Bird'> Duck
+#             Пример
+#class WindowsBase(object):
+#    def show(self):
+#        raise  NotImplementedError()
+#    def hide(self):
+#         raise NotImplementedError()
+
+#class MainWindow(WindowsBase):
+ #    def show(self):
+ #     raise  NotImplementedError()
+ #    print('Показать MainWindow')
+     #     def hide(self):
+#         print('Спрятать MainWindow')
+
+#class SettingWindows(WindowsBase):
+# def hide(self):
+#  print('Спрятать MainWindow')
+
+#def hide(self):
+# print('Спрятать SettingWindow')
+
+#class WindowMediator(object):
+#     def __init__(self):
+#         self.windows=dict.fromkeys(['main','setting','help'])
+
+#     def show(self,win):
+#          for window in self.windows.values():
+#              if not window is win:
+#                  window.hide()
+#             Пример
+#                                      24.05.24   Домашняя  работа
+#                 Задача№1
+#def role_required(role: str):
+#def decorator(func):
+#def wrapper(user_role):
+#if user_role == 'admin':
+#return func()
+#else:
+#return 'Permission denied'
+#return wrapper
+#return decorator
+
+#@role_required('admin')
+#def secret_resource():
+#return 'Permission accepted'
+# Пример использования
+#print(secret_resource('admin')) # Output: Permission accepted
+#print(secret_resource('manager')) # Output: Permission denied
+#                 Задача№2
+#RU_TO_EN = {
+#"привет": "hello",
+#"мир": "world"
+#}
+#RU_TO_LT = {
+#"привет": "sveiki",
+#"мир": "pasaulis"
+#}
+#def translate_to(lang: str):
+#def decorator(func):
+#def wrapper(word):
+#if lang == "EN":
+#translation = RU_TO_EN.get(word, word)
+#elif lang == "LT":
+#translation = RU_TO_LT.get(word, word)
+#else:
+#translation = word
+#return func(translation)
+#return wrapper
+#return decorator
+
+#@translate_to("EN")
+#def say(word):
+#print(word)
+
+#@translate_to("LT")
+#def say_lt(word):
+#print(word)
+#say("привет")
+#say_lt("привет")
 
 
 
