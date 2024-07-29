@@ -1311,6 +1311,74 @@
 # Green
 # Red
 # Blue
+#                                28.07.24 Домашняя работа
+#           Задач№1
+#class Singleton:
+# _instance = None
+# def __new__(cls):
+#  if cls._instance is None:
+#  cls._instance = super(Singleton, cls).__new__(cls)
+# return cls._instance
+# Пример использования
+#singleton1 = Singleton()
+#singleton2 = Singleton()
+#print(singleton1 is singleton2)  # Выведет True, так как singleton1 и singleton2 указывают на один и тот же объект
+#singleton1 = Singleton()
+#singleton2 = Singleton()
+
+#print(singleton1 is singleton2)
+#           Задач№2
+#class AbstractFactory:
+ #def create_product_a(self):
+#  pass
+#def create_product_b(self):
+# pass
+# Конкретная фабрика 1
+#class ConcreteFactory1(AbstractFactory):
+# def create_product_a(self):
+#  return ConcreteProductA1()
+# return ConcreteProductB1()
+# Конкретная фабрика 2
+#class ConcreteFactory2(AbstractFactory):
+# def create_product_a(self):
+#  return ConcreteProductA2()
+#def create_product_b(self):
+# return ConcreteProductB2()
+# Абстрактный продукт A
+#class AbstractProductA:
+ #def operation(self):
+ # pass
+# Абстрактный продукт B
+#class AbstractProductB:
+ #def operation(self):
+#  pass
+# Конкретный продукт A1
+#class ConcreteProductA1(AbstractProductA):
+# def operation(self):
+#  return "ConcreteProductA1 operation"
+# Конкретный продукт B1
+#class ConcreteProductB1(AbstractProductB):
+# def operation(self):
+#  return "ConcreteProductB1 operation"
+# Конкретный продукт A2
+#class ConcreteProductA2(AbstractProductA):
+# def operation(self):
+#  return "ConcreteProductA2 operation"
+# Конкретный продукт B2
+#class ConcreteProductB2(AbstractProductB):
+# def operation(self):
+#  return "ConcreteProductB2 operation"
+# Тестирование
+#factory1 = ConcreteFactory1()
+#product_a1 = factory1.create_product_a()
+#product_b1 = factory1.create_product_b()
+#print(product_a1.operation())  # Вывод: ConcreteProductA1 operation
+#print(product_b1.operation())  # Вывод: ConcreteProductB1 operation
+#factory2 = ConcreteFactory2()
+#product_a2 = factory2.create_product_a()
+#product_b2 = factory2.create_product_b()
+#print(product_a2.operation())  # Вывод: ConcreteProductA2 operation
+#print(product_b2.operation())  # Вывод: ConcreteProductB2 operation
 
 
 
