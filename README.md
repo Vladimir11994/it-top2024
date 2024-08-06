@@ -1690,6 +1690,42 @@
 #We have just removed bread from our list
 #--------------------------------------------------------------
 
+#                                                 Домашняя  работа  4.08.24
+#                        Задача№1
+#class Singleton:
+# _instance = None
+#def __new__(cls):
+# if not cls._instance:
+#  cls._instance = super(Singleton, cls).__new__(cls)
+#  return cls._instance
+# Пример использования
+#singleton_instance1 = Singleton()
+#singleton_instance2 = Singleton()
+#print(singleton_instance1 is singleton_instance2)
+#                         Задача№2
+#class Animal:
+# def speak(self):
+#  pass
+#class Dog(Animal):
+# def speak(self):
+#  return "Woof!"
+#class Cat(Animal):
+# def speak(self):
+#  return "Meow!"
+#class AnimalFactory:
+# def create_animal(self, animal_type):
+#  if animal_type == "dog":
+#  return Dog()
+#elif animal_type == "cat":
+#return Cat()
+#else:
+#return None
+#factory = AnimalFactory()
+#dog = factory.create_animal("dog")
+#cat = factory.create_animal("cat")
+#print(dog.speak()) # Вывод: Woof!
+#print(cat.speak()) # Вывод: Meow!
+
 
 
 
